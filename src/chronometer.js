@@ -1,33 +1,61 @@
 class Chronometer {
   constructor() {
-    // ... your code goes here
+   this.currentTime = 0;
+   this.intervalId = null;
+
   }
 
   start(printTimeCallback) {
-    // ... your code goes here
+
+    this.intervalId = setInterval(() => {
+      this.currentTime++
+      if(typeof printTimeCallback === 'function') {
+        printTimeCallback()
+      }
+
+    } , 1000  );
+   //return this.intervalId   
   }
 
   getMinutes() {
-    // ... your code goes here
+    let res = Math.floor(this.currentTime/60)
+    return res
+  
   }
 
   getSeconds() {
-    // ... your code goes here
+    let sec = this.currentTime%60
+    console.log(sec, 'sec')
+    return  sec
   }
 
   computeTwoDigitNumber(value) {
-    // ... your code goes here
+
+    let res = value.toString().padStart(2, '0')
+    return res
   }
 
   stop() {
-    // ... your code goes here
+    clearInterval(this.intervalId)
+
   }
 
   reset() {
-    // ... your code goes here
+    this.currentTime = 0
   }
 
   split() {
-    // ... your code goes here
-  }
+    let localTime=  this.currentTime
+    console.log(this.currentTime, 'split')
+    let cenSec = localTime/100
+    
+
+   
+    return  milSec
+    }
+    // localTime=0
+    // 1 centisecond = 10 milliseconds
+
+//1 second = 100 centiseconds = 1000 milliseconds
+  
 }
