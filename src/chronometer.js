@@ -41,7 +41,6 @@ class Chronometer {
   stop() {
     return clearInterval(this.intervalId)
 
-  }
 
   reset() {
     this.currentTime = 0
