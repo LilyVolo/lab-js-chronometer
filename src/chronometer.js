@@ -8,23 +8,23 @@ class Chronometer {
   start(printTimeCallback) {
 
     this.intervalId = setInterval(() => {
-      this.currentTime++
-      if(typeof printTimeCallback === 'function') {
+      this.currentTime++;
+      if(!printTimeCallback){
+      } else {
         printTimeCallback()
       }
 
-    } , 1000  );
-   //return this.intervalId   
+    }, 10);
   }
 
   getMinutes() {
-    let res = Math.floor(this.currentTime/60)
+    let res = Math.floor(this.currentTime/6000)
     return res
   
   }
 
   getSeconds() {
-    let sec = this.currentTime%60
+    let sec = Math.floor(this.currentTime/100%60)
     console.log(sec, 'sec')
     return  sec
   }
@@ -34,9 +34,12 @@ class Chronometer {
     let res = value.toString().padStart(2, '0')
     return res
   }
+  getCentiseconds() {
+    return this.currentTime%100
+  }
 
   stop() {
-    clearInterval(this.intervalId)
+    return clearInterval(this.intervalId)
 
   }
 
@@ -44,18 +47,10 @@ class Chronometer {
     this.currentTime = 0
   }
 
+
   split() {
-    let localTime=  this.currentTime
-    console.log(this.currentTime, 'split')
-    let cenSec = localTime/100
-    
-
-   
-    return  milSec
-    }
-    // localTime=0
-    // 1 centisecond = 10 milliseconds
-
-//1 second = 100 centiseconds = 1000 milliseconds
-  
+    let minutes = this.computeTwoDigitNumber(this.getMinutes());
+    let seconds = this.computeTwoDigitNumber(this.getSeconds());
+    return `${minutes}:${seconds}`
+}
 }
